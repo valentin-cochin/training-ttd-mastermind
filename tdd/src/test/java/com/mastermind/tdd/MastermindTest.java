@@ -89,4 +89,37 @@ class MastermindTest {
 		
 		assertEquals(1, illPlacedColorCount);
 	}
+	
+	@Test
+	void shouldMatchZeroColorIllPlacedForFivePegs() {
+		List<Color> combinationToFind = Arrays.asList(Color.RED, Color.RED, Color.RED, Color.RED, Color.RED);
+		Mastermind mastermind = new Mastermind(combinationToFind);
+		List<Color> combination = Arrays.asList(Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE);
+		
+		int illPlacedColorCount = mastermind.countIllPlacedColors(combination);
+		
+		assertEquals(0, illPlacedColorCount);
+	}
+	
+	@Test
+	void shouldMatchZeroColorIllPlacedForFivePegsWithSameValues() {
+		List<Color> combinationToFind = Arrays.asList(Color.RED, Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE);
+		Mastermind mastermind = new Mastermind(combinationToFind);
+		List<Color> combination = Arrays.asList(Color.RED, Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE);
+		
+		int illPlacedColorCount = mastermind.countIllPlacedColors(combination);
+		
+		assertEquals(0, illPlacedColorCount);
+	}
+	
+	@Test
+	void shouldMatchFiveColorsIllPlacedForFivePegsWithSameValues() {
+		List<Color> combinationToFind = Arrays.asList(Color.RED, Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE);
+		Mastermind mastermind = new Mastermind(combinationToFind);
+		List<Color> combination = Arrays.asList(Color.YELLOW, Color.GREEN, Color.BLUE, Color.RED, Color.RED);
+		
+		int illPlacedColorCount = mastermind.countIllPlacedColors(combination);
+		
+		assertEquals(5, illPlacedColorCount);
+	}
 }
