@@ -74,8 +74,19 @@ class MastermindTest {
 		Mastermind mastermind = new Mastermind(combinationToFind);
 		List<Color> combination = Arrays.asList(Color.BLUE, Color.RED);
 		
-		int illPlacedColorCount = mastermind.countIllPlacedColors();
+		int illPlacedColorCount = mastermind.countIllPlacedColors(combination);
 		
 		assertEquals(2, illPlacedColorCount);
+	}
+	
+	@Test
+	void shouldMatchCombinationForOneColorIllPlaced() {
+		List<Color> combinationToFind = Arrays.asList(Color.RED, Color.YELLOW);
+		Mastermind mastermind = new Mastermind(combinationToFind);
+		List<Color> combination = Arrays.asList(Color.BLUE, Color.RED);
+		
+		int illPlacedColorCount = mastermind.countIllPlacedColors(combination);
+		
+		assertEquals(1, illPlacedColorCount);
 	}
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Mastermind {
 	List<Color> combinationToFind;
-	int nbIllPlacedColors = 2;
 
 	public Mastermind(List<Color> combinationToFind) {
 		this.combinationToFind = combinationToFind;
@@ -12,6 +11,7 @@ public class Mastermind {
 
 	public int countWellPlacedColors(List<Color> combination) {
 		int nbWellPlacedColors = 0;
+		
 		for (int i = 0; i < combination.size(); i++) {
 			boolean isPegColorMatching = combination.get(i).equals(combinationToFind.get(i));
 			if (isPegColorMatching) {
@@ -21,8 +21,16 @@ public class Mastermind {
 		return nbWellPlacedColors;
 	}
 
-	public int countIllPlacedColors() {
-		return 2;
+	public int countIllPlacedColors(List<Color> combination) {
+		int nbIllPlacedColors = 0;
+		
+		for (int i = 0; i < combination.size(); i++) {
+			boolean isPegColorNotMatching = !combination.get(i).equals(combinationToFind.get(i));
+			boolean isPegColorPresent = combinationToFind.contains(combination.get(i));
+			if (isPegColorNotMatching && isPegColorPresent) {
+				nbIllPlacedColors++;
+			}
+		}
+		return nbIllPlacedColors;
 	}
 }
-
